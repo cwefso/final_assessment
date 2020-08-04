@@ -13,7 +13,14 @@ export class App extends Component {
   }
 
   componentDidMount() {
-  }
+    getUrls()
+    .then((result) => {
+        this.setState({
+          urls: result.urls,
+        });
+      })
+    .catch(err => console.log(err.message));
+    }
 
   render() {
     return (
