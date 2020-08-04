@@ -24,6 +24,12 @@ export class App extends Component {
   
   componentDidUpdate() {
     getUrls()
+    .then((result) => {
+      this.setState({
+        urls: result.urls,
+      });
+    })
+    .catch((err) => console.log(err.message));
   }
 
 	addUrl = (urlToShorten, title) => {
