@@ -1,22 +1,27 @@
-import React from 'react';
-import './UrlContainer.css';
+import React from "react";
+import "./UrlContainer.css";
 
-const UrlContainer = props => {
-  const urlEls = props.urls.map(url => {
-    return (
-      <div className="url">
-        <h3>{url.title}</h3>
-        <a href={url.short_url} target="blank">{url.short_url}</a>
-        <p>{url.long_url}</p>
-      </div>
-    )
-  });
+const UrlContainer = (props) => {
+	const urlEls = props.urls.map((url) => {
+		return (
+			<div className="url">
+				<h3>{url.title}</h3>
+				<a href={url.short_url} target="blank">
+					{url.short_url}
+				</a>
+				<p>{url.long_url}</p>
+				<button onClick={() => props.removeUrl(url.id)}>
+					Delete URL {url.id}
+				</button>
+			</div>
+		);
+	});
 
-  return (
-    <section>
-      { urlEls.length ? urlEls : <p>No urls yet! Find some to shorten!</p> }
-    </section>
-  )
-}
+	return (
+		<section>
+			{urlEls.length ? urlEls : <p>No urls yet! Find some to shorten!</p>}
+		</section>
+	);
+};
 
 export default UrlContainer;

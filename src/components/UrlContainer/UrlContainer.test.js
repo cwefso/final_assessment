@@ -22,9 +22,7 @@ describe("UrlContainer", () => {
 			},
 		];
 
-		const { getByRole } = render(
-			<UrlContainer urls={urls} />
-		);
+		const { getByRole } = render(<UrlContainer urls={urls} />);
 
 		const heading1 = getByRole("heading", { name: "Awesome photo" });
 		const heading2 = getByRole("heading", { name: "Bats" });
