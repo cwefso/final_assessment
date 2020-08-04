@@ -4,6 +4,7 @@ import { getUrls, postUrl } from "../../apiCalls";
 import UrlContainer from "../UrlContainer/UrlContainer";
 import UrlForm from "../UrlForm/UrlForm";
 
+
 export class App extends Component {
 	constructor(props) {
 		super(props);
@@ -12,24 +13,18 @@ export class App extends Component {
 		};
 	}
 
-	componentDidMount() {
-		getUrls()
-			.then((result) => {
-				this.setState({
-					urls: result.urls,
-				});
-			})
-			.catch((err) => console.log(err.message));
+  componentDidMount = () => {
+    getUrls()
+      .then(data =>{
+        this.setState({urls: data.urls})
+      })
+      .catch(error => console.error(error));
   }
   
-  componentDidUpdate() {
-    getUrls()
-    .then((result) => {
-      this.setState({
-        urls: result.urls,
-      });
-    })
-    .catch((err) => console.log(err.message));
+  componentDidUpdate = (prevState) => {
+    if(this.state.urls !== prevState.urls){
+      getUrls()
+    }
   }
 
 	addUrl = (urlToShorten, title) => {
